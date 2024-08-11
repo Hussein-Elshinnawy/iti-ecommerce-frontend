@@ -1,49 +1,45 @@
-<div class="d-flex justify-content-center  py-4  ">
-    <div class="col-md-5 col-lg-4 order-md-last">
+<!-- <div class="d-flex justify-content-center py-4">
+  <div class="col-md-5 col-lg-4 order-md-last">
     <h4 class="d-flex justify-content-between align-items-center mb-3">
       <span class="text-primary">Your cart</span>
-      <span class="badge bg-primary rounded-pill">3</span>
     </h4>
     <ul class="list-group mb-3">
-      <li class="list-group-item d-flex justify-content-between lh-sm">
-        <div>
-          <h6 class="my-0">Product name</h6>
-          <small class="text-body-secondary">Brief description</small>
+      <li *ngFor="let product of cartProducts" class="list-group-item d-flex justify-content-between lh-sm">
+     
+        <div class="d-flex flex-row justify-content-between align-items-center">
+          <img style="width: 25%;" [src]="(product.thumbnail)" alt="product thumbnail">
+          <h6 class="my-0">{{ product.title }}</h6>
+          <span class="text-body-secondary">${{ product.price }}</span>
+          <div>
+            <button type="button" class="btn btn-primary btn-sm">+</button>
+            <span class="m-2">0</span>
+            <button type="button" class="btn btn-secondary btn-sm">-</button>
+          </div>
         </div>
-        <span class="text-body-secondary">$12</span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between lh-sm">
-        <div>
-          <h6 class="my-0">Second product</h6>
-          <small class="text-body-secondary">Brief description</small>
-        </div>
-        <span class="text-body-secondary">$8</span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between lh-sm">
-        <div>
-          <h6 class="my-0">Third item</h6>
-          <small class="text-body-secondary">Brief description</small>
-        </div>
-        <span class="text-body-secondary">$5</span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
-        <div class="text-success">
-          <h6 class="my-0">Promo code</h6>
-          <small>EXAMPLECODE</small>
-        </div>
-        <span class="text-success">−$5</span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between">
-        <span>Total (USD)</span>
-        <strong>$20</strong>
       </li>
     </ul>
-
-    <form class="card p-2">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Promo code">
-        <button type="submit" class="btn btn-secondary">Redeem</button>
-      </div>
-    </form>
+  </div>
+</div> -->
+<div class="d-flex justify-content-center py-4">
+  <div class="col-md-5 col-lg-4 order-md-last">
+    <h4 class="d-flex justify-content-between align-items-center mb-3">
+      <span class="text-primary">Your cart</span>
+    </h4>
+    <ul class="list-group mb-3">
+      <li *ngFor="let item of cartProducts" class="list-group-item d-flex justify-content-between lh-sm">
+        <div class="d-flex flex-row justify-content-between align-items-center">
+          <img style="width: 25%;" [src]="item.product.thumbnail" alt="product thumbnail">
+          <h6 class="my-0">{{ item.product.title }}</h6>
+          <span class="text-body-secondary">${{ item.product.price }}</span>
+          <div>
+            <!-- <p>{{item.quantity}} == {{item.product.stock-1}}</p> -->
+            <button type="button" class="btn btn-primary btn-sm"[disabled]="item.quantity==item.product.stock-1" (click)="increaseQuantity(item.product.id)">+</button>
+            <span class="m-2">{{ item.quantity }}</span>
+            <button type="button" class="btn btn-secondary btn-sm" (click)="decreaseQuantity(item.product.id)">-</button>
+          </div>
+        </div>
+      </li>
+    </ul>
   </div>
 </div>
+

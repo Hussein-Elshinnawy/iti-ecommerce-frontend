@@ -29,7 +29,7 @@
           </button>           -->
        
 
-            <button type="button" class="btn btn-sm btn-outline-secondary"   [disabled]="!(productData.stock-1)" (click)="addToCart($event)">
+            <button type="button" class="btn btn-sm btn-outline-secondary"   [disabled]="!(productData.stock-1)" (click)="addToCart($event, productData)">
               add to cart
             </button>
         
