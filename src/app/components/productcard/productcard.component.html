@@ -1,0 +1,42 @@
+<div class="col" >
+  <div class="card shadow-sm" (click)="handleRedirect(productData.id)" >
+    @if(productData.stock-1){
+      <span class="badge rounded-pill text-bg-success w-25" style="z-index: 10; position: absolute; top: 5px; left: 5px;">In stock</span>
+    }@else {
+      <span class="badge rounded-pill text-bg-danger w-25" style="z-index: 10; position: absolute; top: 5px; left: 5px;">Out of stock</span>
+  
+    }
+    <img
+      class="bd-placeholder-img card-img-top"
+      style="width: 100%; position: relative;"
+      [src]="productData.thumbnail"
+      [alt]="productData.title"
+      loading="lazy"
+    />
+    <div class="card-body ">
+      <div class="d-flex justify-content-between align-items-center mt-2">
+        <h6 class="card-text">{{ productData.title }}</h6>
+        <span class="card-text">${{ productData.price }} </span>
+      </div>
+      <!-- <span class="card-text">number in stock {{ productData.stock }} </span> -->
+        <small class="card-text my-2">{{productData.description.slice(0,30)}}...</small>
+  
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group">
+
+          <!-- <button type="button" class="btn btn-sm btn-outline-secondary" (click)="handleRedirect(productData.id)">
+            View
+          </button>           -->
+       
+
+            <button type="button" class="btn btn-sm btn-outline-secondary"   [disabled]="!(productData.stock-1)" (click)="addToCart($event)">
+              add to cart
+            </button>
+        
+        </div>
+        <small class="text-body-secondary">9 mins</small>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container w-50" style="text-align: center;" *ngIf="productObj">
+    <h2>{{ productObj.title }}</h2>
+    <img [src]="productObj.thumbnail" [alt]="productObj.title" class="img-fluid">
+    <div style="text-align: center;">
+        <img *ngFor="let img of productObj.images" [src]="img" [alt]="productObj.title" class="img-fluid m-1" style="width: 10%; height: 60px; border:1px solid black; object-fit: contain;" loading="lazy">
+    </div>
+    <p>{{ productObj.description }}</p>
+    <p>{{ productObj.brand }}</p>
+    <p></p>
+    
+    <p>Price: 
+      <span *ngIf="!productObj.discountPercentage">${{ productObj.price }}</span>
+      <span *ngIf="productObj.discountPercentage">{{ productObj.price | discountpipe:productObj.discountPercentage }}</span>
+    </p>
+    <div class="star-rating">
+      <span *ngFor="let star of getStarArray(productObj.rating)">
+        <span class="fa" [class.fa-star]="star === 1" [class.fa-star-o]="star === 0"></span>
+      </span>
+      <span>{{ productObj.rating }}</span>
+    </div>
+    
+    <p *ngIf="productObj.stock > 0" class="text-success">In Stock</p>
+    <p *ngIf="productObj.stock <= 0" class="text-danger">Out of Stock</p>
+    <button class="btn btn-primary" [disabled]="productObj.stock <= 0">Add to Cart</button>
+</div>

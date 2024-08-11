@@ -1,0 +1,67 @@
+<div class="d-flex justify-content-center  py-4 bg-body-tertiary">
+  <main class="form-signin w-25 m-auto">
+      <form [formGroup]="registerForm" (ngSubmit)="handleFormSubmit()">
+        <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+          
+        <div class="form-floating">
+          <input type="name" class="form-control" id="name" placeholder="ex hussein" 
+           formControlName="name" >
+          <label for="name">name</label>
+        
+          <div *ngIf="name?.invalid && name?.touched" id="recipe-name" class="form-text text-danger">
+            <div *ngIf="name?.hasError('required')">Required</div>
+            <div *ngIf="name?.hasError('minlength')">Min length is 3</div>
+          </div>
+        </div>
+        <div class="form-floating">
+          <input type="email" class="form-control" id="email" placeholder="name@example.com" 
+          formControlName="email">
+          <label for="email">Email address</label>
+          <div *ngIf="email?.invalid && email?.touched" id="recipe-name" class="form-text text-danger">
+            <div *ngIf="email?.hasError('required')">Required</div>
+            <div *ngIf="email?.hasError('pattern')">doesn't match email pattern</div>
+          </div>
+        </div>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="username" placeholder="" 
+          formControlName="username">
+          <label for="username">Username</label>
+  
+          <div *ngIf="(username?.invalid && username?.touched)" id="recipe-name" class="form-text text-danger">
+            <div *ngIf="username?.hasError('required')">Required</div>
+            <div *ngIf="username?.hasError('minlength')">Min length is 3</div>
+          </div>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="password" placeholder=""
+          formControlName="password">
+          <label for="password">Password</label>
+          <div *ngIf="password?.invalid && password?.touched" id="recipe-name" class="form-text text-danger">
+            <div *ngIf="password?.hasError('required')">Required</div>
+            <div *ngIf="password?.hasError('minlength')">Min length is 3</div>
+          </div>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="confirmpassword" placeholder=""
+          formControlName="confirmpassword">
+          <label for="confirmpassword">Confirm Password</label>
+          <div *ngIf="confirmpassword?.invalid && confirmpassword?.touched" id="recipe-name" class="form-text text-danger">
+            <div *ngIf="confirmpassword?.hasError('required')">Required</div>
+            <div *ngIf="confirmpassword?.hasError('passwordMismatch')">passowrd doesn't match</div>
+          </div>
+        </div>
+    
+        <div class="form-check text-start my-3">
+          <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            Remember me
+          </label>
+        </div>
+        <button class="btn btn-primary w-100 py-2" type="submit" [disabled]="!registerForm.valid">Sign in</button>
+        <p class="mt-5 mb-3 text-body-secondary">© 2017–2024</p>
+      </form>
+    </main>
+</div>
+   
+  
+  
