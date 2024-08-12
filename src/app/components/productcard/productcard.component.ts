@@ -26,7 +26,7 @@ export class ProductcardComponent  {
   addToCart(event: Event, product:Product) {
     console.log(product);
     this.cartService.addProductCart(product);
-    // alert('added to cart');
+    alert('added to cart');
     event.stopPropagation();
   }
  

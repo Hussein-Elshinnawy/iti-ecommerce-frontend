@@ -6,6 +6,7 @@ import { filter } from 'rxjs';
 import { DiscountpipePipe } from '../../pipes/discountpipe.pipe';
 import { ProductService } from '../../services/product.service';
 import { ProductsRequestsService } from '../../services/products-requests.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -21,8 +22,8 @@ export class ProductDetailsComponent implements OnInit{
 
   productId:number =0;
   productObj:Product | any ;
-  constructor(private route: ActivatedRoute, private productsRequestsService:ProductsRequestsService) {}
-  ngOnInit() {
+  constructor(private route: ActivatedRoute, private productsRequestsService:ProductsRequestsService, private cartService: CartService) {}
+  ngOnInit() {  
     this.route.paramMap.subscribe(params => {
       const productId = +params.get('id')!;
       // this.productObj = this.productList.find(product => product.id === productId);
@@ -37,7 +38,12 @@ export class ProductDetailsComponent implements OnInit{
     const emptyStars = 5 - fullStars;
     return Array(fullStars).fill(1).concat(Array(emptyStars).fill(0));
   }
-  
+  addToCart() {
+    if (this.productObj && this.productObj.stock > 0) {
+      this.cartService.addProductCart(this.productObj);
+      alert("added to cart");
+    }
+  }
   
   
   

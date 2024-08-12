@@ -22,5 +22,5 @@
     
     <p *ngIf="productObj.stock > 0" class="text-success">In Stock</p>
     <p *ngIf="productObj.stock <= 0" class="text-danger">Out of Stock</p>
-    <button class="btn btn-primary" [disabled]="productObj.stock <= 0">Add to Cart</button>
+    <button class="btn btn-primary" [disabled]="productObj.stock <= 0" (click)="addToCart()">Add to Cart</button>
 </div>
